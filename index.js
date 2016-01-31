@@ -8,9 +8,10 @@ var http = require('http');
 if (!process.env.DATABASE_URI) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
 }
-
+var dbPath='mongodb://'+process.env.OPENSHIFT_MONGODB_DB_USERNAME+':'+process.env.OPENSHIFT_MONGODB_DB_PASSWORD+'@'+process.env.OPENSHIFT_MONGODB_DB_HOST+':'+process.env.OPENSHIFT_MONGODB_DB_PORT+'/'+process.env.OPENSHIFT_APP_NAME;
 var api = new ParseServer({
-  databaseURI: process.env.DATABASE_URI || 'mongodb://localhost:27017/dev',
+  //databaseURI: process.env.DATABASE_URI || 'mongodb://localhost:27017/dev',
+  databaseURI:dbPath,
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: 'myAppId',
   masterKey: 'myMasterKey'
