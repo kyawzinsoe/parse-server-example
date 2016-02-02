@@ -33,7 +33,8 @@ app.get('/', function(req, res) {
 
 //var port = process.env.PORT || 1337;
  var port = parseInt(process.env.OPENSHIFT_NODEJS_PORT) || 8080;
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 var httpServer = http.createServer(app);
-httpServer.listen(port, function() {
+httpServer.listen(port, server_ip_address ,function() {
   console.log('parse-server-example running on port ' + port + '.');
 });
